@@ -1,4 +1,5 @@
-# dcape-app-whoami Makefile
+# dcape-app-template Makefile
+# This file extends Makefile.app from dcape
 
 SHELL               = /bin/bash
 CFG                ?= .env
@@ -12,15 +13,18 @@ IMAGE              ?= ghcr.io/lekovr/service-template
 #- Docker image tag
 IMAGE_VER          ?= 0.1.0
 
-# Just for example
+# If you need database, uncomment this var
+#USE_DB              = yes
 
-#USE_DB = yes
+# If you need user name and password, uncomment this var
+#ADD_USER            = yes
 
 # ------------------------------------------------------------------------------
 
 -include $(CFG)
 export
 
+# This content will be added to .env
 # define CONFIG_CUSTOM
 # # ------------------------------------------------------------------------------
 # # Sample config for .env
