@@ -1,5 +1,6 @@
-# dcape-app-template Makefile
-# This file extends Makefile.app from dcape
+## dcape-app-template Makefile
+## This file extends Makefile.app from dcape
+#:
 
 SHELL               = /bin/bash
 CFG                ?= .env

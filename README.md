@@ -36,7 +36,7 @@
 
 ### Via terminal
 
-Run commands on deploy host:
+Run commands on deploy host with [dcape](https://github.com/dopos/dcape) installed:
 ```bash
 git clone --single-branch --depth 1 https://github.com/dopos/dcape-app-template.git
 cd dcape-app-template
