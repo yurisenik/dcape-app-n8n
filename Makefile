@@ -4,6 +4,7 @@
 
 SHELL               = /bin/bash
 CFG                ?= .env
+CFG_BAK            ?= $(CFG).bak
 
 #- App name
 APP_NAME           ?= service-template
@@ -21,6 +22,10 @@ IMAGE_VER          ?= 0.1.0
 #ADD_USER            = yes
 
 # ------------------------------------------------------------------------------
+
+# if exists - load old values
+-include $(CFG_BAK)
+export
 
 -include $(CFG)
 export
