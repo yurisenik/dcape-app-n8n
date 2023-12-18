@@ -38,7 +38,7 @@
 
 Run commands on deploy host with [dcape](https://github.com/dopos/dcape) installed:
 ```bash
-git clone --single-branch --depth 1 https://github.com/dopos/dcape-app-template.git
+git clone https://github.com/dopos/dcape-app-template.git
 cd dcape-app-template
 make config-if
 ... <edit .env.sample>

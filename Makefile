@@ -54,3 +54,7 @@ endif
 ## Template support code, used once
 use-template:
 
+.default-deploy: prep
+
+prep:
+	@echo "Just to show we able to attach"
