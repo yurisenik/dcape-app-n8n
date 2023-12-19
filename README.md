@@ -18,7 +18,7 @@
 ## Requirements
 
 * linux 64bit with git, make, sed installed
-* [docker](http://docker.io)
+* [docker](http://docker.io) with [compose plugin](https://docs.docker.com/compose/install/linux/)
 * [dcape](https://github.com/dopos/dcape) v3
 * VCS service like [Gitea](https://gitea.io)
 * CI/CD service like [Woodpecker CI](https://woodpecker-ci.org/)
@@ -41,7 +41,7 @@ Run commands on deploy host with [dcape](https://github.com/dopos/dcape) install
 git clone https://github.com/dopos/dcape-app-template.git
 cd dcape-app-template
 make config-if
-... <edit .env.sample>
+... <edit .env>
 make up
 ```
 
