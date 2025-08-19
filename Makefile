@@ -7,19 +7,22 @@ CFG                ?= .env
 CFG_BAK            ?= $(CFG).bak
 
 #- App name
-APP_NAME           ?= service-template
+APP_NAME           ?= n8n
 
 #- Docker image name
-IMAGE              ?= ghcr.io/lekovr/service-template
+IMAGE              ?= docker.n8n.io/n8nio/n8n
 
 #- Docker image tag
-IMAGE_VER          ?= 0.1.0
+IMAGE_VER          ?= 1.107.3
 
 # If you need database, uncomment this var
-#USE_DB              = yes
+USE_DB             =  yes
 
-# If you need user name and password, uncomment this var
-#ADD_USER            = yes
+#- Encryption key for n8n
+ENCRYPTION_KEY     ?= $(shell openssl rand -hex 16; echo)
+
+#- URL for webhook link generation
+WEBHOOK_URL        =  https://$(APP_NAME).$(DCAPE_DOMAIN)
 
 # ------------------------------------------------------------------------------
 
@@ -31,12 +34,11 @@ export
 export
 
 # This content will be added to .env
-# define CONFIG_CUSTOM
-# # ------------------------------------------------------------------------------
-# # Sample config for .env
-# #SOME_VAR=value
-#
-# endef
+define CONFIG_CUSTOM
+
+DB_CONTAINER=$(DB_CONTAINER)
+
+endef
 
 # ------------------------------------------------------------------------------
 # Find and include DCAPE_ROOT/Makefile

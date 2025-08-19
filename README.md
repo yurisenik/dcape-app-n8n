@@ -1,4 +1,4 @@
-# dcape-app-template
+# dcape-app-n8n
 
 [![GitHub Release][1]][2] [![GitHub code size in bytes][3]]() [![GitHub license][4]][5]
 
@@ -8,12 +8,12 @@
 [4]: https://img.shields.io/github/license/dopos/dcape-app-template.svg
 [5]: LICENSE
 
-[upstream_name](https://upstream_url) application package for [dcape](https://github.com/dopos/dcape).
+[n8n](https://n8n.io/) application package for [dcape](https://github.com/dopos/dcape).
 
 ## Upstream
 
-* Project: [upstream_name](https://upstream_url)
-* Docker: [template](https://hub.docker.com/r/template)
+* Project: [n8n](https://n8n.io/)
+* Docker: [n8n](https://docs.n8n.io/hosting/installation/server-setups/docker-compose/)
 
 ## Requirements
 
@@ -38,10 +38,12 @@
 
 Run commands on deploy host with [dcape](https://github.com/dopos/dcape) installed:
 ```bash
-git clone https://github.com/dopos/dcape-app-template.git
-cd dcape-app-template
+git clone https://github.com/yurisenik/dcape-app-n8n.git
+cd dcape-app-n8n
 make config-if
 ... <edit .env>
+mkdir n8n_storage redis_storage 
+chmod a+x *_storage
 make up
 ```
 

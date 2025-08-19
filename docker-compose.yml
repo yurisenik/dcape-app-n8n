@@ -1,9 +1,52 @@
-# This file will be joined with docker-compose.app.yml from dcape
-# See https://github.com/dopos/dcape
-
 services:
   # This service will extend code from dcape
   app:
     environment:
-      # Some var to keep YML struct
       - DEBUG=yes
+      - DB_TYPE=postgresdb
+      - DB_POSTGRESDB_HOST=${DB_CONTAINER}
+      - DB_POSTGRESDB_PORT=5432
+      - DB_POSTGRESDB_DATABASE=${PGDATABASE}
+      - DB_POSTGRESDB_USER=${PGUSER}
+      - DB_POSTGRESDB_PASSWORD=${PGPASSWORD}
+      - EXECUTIONS_MODE=queue
+      - QUEUE_BULL_REDIS_HOST=redis
+      - QUEUE_HEALTH_CHECK_ACTIVE=true
+      - N8N_ENCRYPTION_KEY=${ENCRYPTION_KEY}
+      - WEBHOOK_URL=${WEBHOOK_URL}
+    volumes:
+      - ./n8n_storage:/home/node/.n8n
+    depends_on:
+      redis:
+        condition: service_healthy
+
+  n8n-worker:
+    restart: always
+    image: ${IMAGE}:${IMAGE_VER}
+    environment:
+      - DB_TYPE=postgresdb
+      - DB_POSTGRESDB_HOST=${DB_CONTAINER}
+      - DB_POSTGRESDB_PORT=5432
+      - DB_POSTGRESDB_DATABASE=${PGDATABASE}
+      - DB_POSTGRESDB_USER=${PGUSER}
+      - DB_POSTGRESDB_PASSWORD=${PGPASSWORD}
+      - EXECUTIONS_MODE=queue
+      - QUEUE_BULL_REDIS_HOST=redis
+      - QUEUE_HEALTH_CHECK_ACTIVE=true
+      - N8N_ENCRYPTION_KEY=${ENCRYPTION_KEY}
+    volumes:
+      - ./n8n_storage:/home/node/.n8n
+    command: worker
+    depends_on:
+      - app
+
+  redis:
+    image: redis:6-alpine
+    restart: always
+    volumes:
+      - ./redis_storage:/data
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 5s
+      timeout: 5s
+      retries: 10
