@@ -14,6 +14,7 @@ services:
       - QUEUE_HEALTH_CHECK_ACTIVE=true
       - N8N_ENCRYPTION_KEY=${ENCRYPTION_KEY}
       - WEBHOOK_URL=${WEBHOOK_URL}
+      - GENERIC_TIMEZONE=${GENERIC_TIMEZONE}
     volumes:
       - ./n8n_storage:/home/node/.n8n
     depends_on:
@@ -34,6 +35,7 @@ services:
       - QUEUE_BULL_REDIS_HOST=redis
       - QUEUE_HEALTH_CHECK_ACTIVE=true
       - N8N_ENCRYPTION_KEY=${ENCRYPTION_KEY}
+      - GENERIC_TIMEZONE=${GENERIC_TIMEZONE}
     volumes:
       - ./n8n_storage:/home/node/.n8n
     command: worker

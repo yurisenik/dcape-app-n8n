@@ -24,6 +24,9 @@ ENCRYPTION_KEY     ?= $(shell openssl rand -hex 16; echo)
 #- URL for webhook link generation
 WEBHOOK_URL        =  https://$(APP_NAME).$(DCAPE_DOMAIN)
 
+#- Default timezone
+GENERIC_TIMEZONE  ?= Europe/Moscow
+
 # ------------------------------------------------------------------------------
 
 # if exists - load old values
